@@ -16,7 +16,32 @@ The tool automatically discovers the I2C HID device topology from sysfs and iden
 
 This helps diagnose excess interrupt activity that may prevent CPU deep idle states and cause increased power consumption.
 
+## Running with Nix
+
+The easiest way to run the tool:
+
+```bash
+# Run directly without installing
+sudo nix run github:user/i2c-int-monitor -- list
+sudo nix run github:user/i2c-int-monitor -- tui
+
+# Or from a local checkout
+sudo nix run . -- list
+sudo nix run . -- tui
+sudo nix run . -- monitor
+```
+
 ## Installation
+
+### With Nix (recommended)
+
+```bash
+nix profile install github:user/i2c-int-monitor
+```
+
+### With Cargo
+
+Requires Rust nightly (for edition 2024):
 
 ```bash
 cargo build --release
@@ -80,6 +105,37 @@ The TUI shows:
 - Controllers with their attached HID devices in a hierarchical view
 - Consistent colors between the chart and the table for easy identification
 - Real-time interrupt rates, averages, and maximums
+
+## Development
+
+Enter the development shell with all dependencies:
+
+```bash
+nix develop
+```
+
+This provides:
+- Rust nightly toolchain (required for edition 2024)
+- rust-analyzer for IDE support
+- cargo and all build tools
+
+Common development commands:
+
+```bash
+# Build
+cargo build
+
+# Run
+cargo run -- list
+cargo run -- tui
+
+# Check formatting and lints
+cargo fmt --check
+cargo clippy
+
+# Run tests
+cargo test
+```
 
 ## Background
 
