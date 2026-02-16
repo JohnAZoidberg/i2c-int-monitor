@@ -22,8 +22,8 @@ The easiest way to run the tool:
 
 ```bash
 # Run directly without installing
-sudo nix run github:user/i2c-int-monitor -- list
-sudo nix run github:user/i2c-int-monitor -- tui
+sudo nix run github:JohnAZoidberg/i2c-int-monitor -- list
+sudo nix run github:JohnAZoidberg/i2c-int-monitor -- tui
 
 # Or from a local checkout
 sudo nix run . -- list
@@ -36,7 +36,7 @@ sudo nix run . -- monitor
 ### With Nix (recommended)
 
 ```bash
-nix profile install github:user/i2c-int-monitor
+nix profile install github:JohnAZoidberg/i2c-int-monitor
 ```
 
 ### With Cargo
