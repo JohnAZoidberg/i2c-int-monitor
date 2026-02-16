@@ -20,8 +20,27 @@
 
         # Use Rust 2024 edition support (nightly required for edition = "2024")
         rustToolchain = pkgs.rust-bin.nightly.latest.default;
+
+        # Build the package using the nightly toolchain
+        rustPlatform = pkgs.makeRustPlatform {
+          cargo = rustToolchain;
+          rustc = rustToolchain;
+        };
       in
       {
+        packages.default = rustPlatform.buildRustPackage {
+          pname = "i2c-int-monitor";
+          version = "0.1.0";
+          src = ./.;
+          cargoLock.lockFile = ./Cargo.lock;
+
+          meta = with pkgs.lib; {
+            description = "I2C and HID interrupt rate monitor with TUI dashboard";
+            license = licenses.mit;
+            mainProgram = "i2c-int-monitor";
+          };
+        };
+
         devShells.default = pkgs.mkShell {
           buildInputs = [
             rustToolchain
