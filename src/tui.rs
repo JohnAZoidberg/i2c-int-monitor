@@ -164,7 +164,7 @@ impl App {
             interval_ms,
             should_quit: false,
             selected_idx: 0,
-            total_visible: true,
+            total_visible: false,
             threshold,
         }
     }
